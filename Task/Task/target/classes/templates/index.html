@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasks</title>
+    <style>
+    body {
+        font-family: sans-serif;
+    }
+    table{
+        width: 60%;
+    }
+    .newBtn {
+        display: block;
+        width: 150px;
+        height: 25px;
+        padding: 10px;
+        text-align: center;
+        border-radius: 5px;
+        border: 1px solid #24a0ed;
+        font-weight: bold;
+        line-height: 25px;
+        text-decoration: none;
+        color: white;
+        background: #24a0ed;
+    }
+    .newBtn:hover {
+        background: white;
+        color: #24a0ed;
+    }
+    .editBtn {
+        width: 50px;
+        height: 15px;
+        padding: 10px;
+        text-align: center;
+        border-radius: 5px;
+        border: 1px solid #FFBD44;
+        font-weight: bold;
+        line-height: 25px;
+        text-decoration: none;
+        color: white;
+        background: #FFBD44;
+    }
+    .editBtn:hover {
+        background: white;
+        color: #FFBD44;
+    }
+    .deleteBtn {
+        width: 50px;
+        height: 15px;
+        padding: 10px;
+        text-align: center;
+        border-radius: 5px;
+        border: 1px solid #FF605C;
+        font-weight: bold;
+        line-height: 25px;
+        text-decoration: none;
+        color: white;
+        background: #FF605C;
+    }
+    .deleteBtn:hover {
+        background: white;
+        color: #FF605C;
+
+    }
+    thead {
+        background: #24a0ed;
+    }
+    tbody {
+        background: #D0EFFF;
+        text-align: center;
+    }
+    </style>
+</head>
+<body>
+<div align="center">
+    <h1>Task List</h1>
+    <a href="new" class="newBtn">Create New Task</a>
+    <br/><br/>
+    <table border="1" cellpadding="10">
+        <thead>
+            <tr>
+                <th>Task ID</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Completed</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="task : ${listTasks}">
+                <td th:text="${task.taskId}">Task ID</td>
+                <td th:text="${task.title}">Title</td>
+                <td th:text="${task.description}">Description</td>
+                <td th:text="${task.completed}">Completed</td>
+                <td>
+                    <a th:href="@{'/edit/' + ${task.taskId}}" class="editBtn">Edit</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a th:href="@{'/delete/' + ${task.taskId}}" class="deleteBtn">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
